@@ -1,5 +1,5 @@
 const firebaseConfig = {
-  apiKey: "AIzaSyAOe9aMUozLEUnj-I8fdg9pg5T7V7H1jJ0",
+  apiKey: "AIzaSyAOe9aMUozLEUnj-I8fdg9pg-0e4f",
   authDomain: "voting-app-c0e4f.firebaseapp.com",
   projectId: "voting-app-c0e4f",
   storageBucket: "voting-app-c0e4f.firebasestorage.app",
