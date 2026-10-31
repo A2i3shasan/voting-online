@@ -1,13 +1,11 @@
-// ====== KONFIGURASI FIREBASE KAMU ======
 const firebaseConfig = {
-  apiKey: "AIzaSyAOe9aMUozLEUnj-I8fdg9pg...", // (Pastikan string API Key ini utuh dari console Firebase-mu)
+  apiKey: "AIzaSyAOe9aMUozLEUnj-I8fdg9pg...",
   authDomain: "voting-app-c0e4f.firebaseapp.com",
   projectId: "voting-app-c0e4f",
   storageBucket: "voting-app-c0e4f.firebaseapp.com",
   messagingSenderId: "1063274263693",
-  appId: "1:1063274263693:web:6e4f9813380..." // (Pastikan string App ID ini utuh)
+  appId: "1:1063274263693:web:6e4f9813380..."
 };
-// =======================================
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword,
@@ -50,7 +48,6 @@ onAuthStateChanged(auth, (user) => {
   statusDiv.textContent = user && !user.isAnonymous ? user.email : "";
 });
 
-// ---------- LOGIN ----------
 function renderLogin() {
   appDiv.innerHTML = `
     <div class="kartu">
@@ -79,7 +76,6 @@ function renderLogin() {
   };
 }
 
-// ---------- DASHBOARD PEMBUAT ----------
 async function renderDashboard(user) {
   appDiv.innerHTML = `
     <div class="kartu">
@@ -184,7 +180,6 @@ async function lihatHasil(votingId, user) {
   }
 }
 
-// ---------- HALAMAN VOTING (PEMILIH) ----------
 async function renderHalamanVoting(votingId, user) {
   appDiv.innerHTML = `<div class="kartu"><p>Memuat voting...</p></div>`;
   try {
@@ -230,4 +225,4 @@ async function renderHalamanVoting(votingId, user) {
   } catch (e) {
     appDiv.innerHTML = `<div class="kartu"><div class="pesan error">${e.message}</div></div>`;
   }
-  }
+        }
