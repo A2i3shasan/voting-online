@@ -8,14 +8,20 @@ const firebaseConfig = {
 };
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-import { getFirestore, collection, doc, addDoc, getDoc, getDocs, query, where, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword,
+         createUserWithEmailAndPassword, signOut, signInAnonymously }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getFirestore, collection, doc, addDoc, getDoc, getDocs,
+         query, where, serverTimestamp }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+
 const appDiv = document.getElementById("app");
 const statusDiv = document.getElementById("status-user");
+
 function tampilkanPesan(target, teks, tipe = "error") {
   target.innerHTML = `<div class="pesan ${tipe}">${teks}</div>`;
 }
@@ -56,7 +62,8 @@ function renderLogin() {
   document.getElementById("btn-daftar").onclick = async () => {
     try { await createUserWithEmailAndPassword(auth, document.getElementById("email").value.trim(), document.getElementById("password").value); } catch (e) { tampilkanPesan(pesan, e.message); }
   };
-          }
+}
+
 async function renderDashboard(user) {
   appDiv.innerHTML = `
     <div class="kartu">
@@ -96,19 +103,12 @@ async function muatDaftarVoting(user) {
   snap.forEach(d => {
     const data = d.data();
     const link = `${location.origin}${location.pathname}?vote=${d.id}`;
-    html += `
-      <div class="kartu">
-        <h3>${data.judul}</h3>
-        <p>Kandidat: ${data.kandidat.join(", ")}</p>
-        <p>Bagikan link ini:</p>
-        <div class="link-box">${link}</div>
-        <button class="secondary btn-hasil" data-id="${d.id}">Lihat Hasil</button>
-      </div>
-    `;
+    html += `<div class="kartu"><h3>${data.judul}</h3><p>Kandidat: ${data.kandidat.join(", ")}</p><p>Bagikan link ini:</p><div class="link-box">${link}</div><button class="secondary btn-hasil" data-id="${d.id}">Lihat Hasil</button></div>`;
   });
   wadah.innerHTML = html;
   wadah.querySelectorAll(".btn-hasil").forEach(btn => { btn.onclick = () => lihatHasil(btn.dataset.id, user); });
-    }
+}
+
 async function lihatHasil(votingId, user) {
   const wadah = document.getElementById("daftar-voting");
   wadah.innerHTML = `<div class="kartu"><p>Memuat hasil...</p></div>`;
@@ -155,4 +155,4 @@ async function renderHalamanVoting(votingId, user) {
       };
     });
   } catch (e) { appDiv.innerHTML = `<div class="kartu"><div class="pesan error">${e.message}</div></div>`; }
-            }
+  }
