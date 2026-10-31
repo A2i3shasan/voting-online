@@ -155,4 +155,4 @@ async function renderHalamanVoting(votingId, user) {
       };
     });
   } catch (e) { appDiv.innerHTML = `<div class="kartu"><div class="pesan error">${e.message}</div></div>`; }
-  }
+                                               }
